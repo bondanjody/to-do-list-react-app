@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
 
 import Button from '../../UI/Button/Button';
-import './CourseInput.css';
-import styled from 'styled-components';
+import styles from './CourseInput.module.css';
 
-const FormControl = styled.div`
-  margin: 0.5rem 0;
+// Cara membuat component dengan konsep styled components CSS
+// const FormControl = styled.div`
+//   margin: 0.5rem 0;
 
-& label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-  color: ${props => props.invalid ? 'red' : 'black'};
-}
+// & label {
+//   font-weight: bold;
+//   display: block;
+//   margin-bottom: 0.5rem;
+//   color: ${props => props.invalid ? 'red' : 'black'};
+// }
 
-& input {
-  display: block;
-  width: 100%;
-  border: ${props => props.invalid ? '2px solid red' : '1px solid'};
-  background-color: ${props => props.invalid ? 'salmon' : 'transparent'};
-  font: inherit;
-  line-height: 1.5rem;
-  padding: 0 0.25rem;
-}
+// & input {
+//   display: block;
+//   width: 100%;
+//   border: ${props => props.invalid ? '2px solid red' : '1px solid'};
+//   background-color: ${props => props.invalid ? 'salmon' : 'transparent'};
+//   font: inherit;
+//   line-height: 1.5rem;
+//   padding: 0 0.25rem;
+// }
 
-& input:focus {
-  outline: none;
-  background: #fad0ec;
-  border-color: #8b005d;
-}
-`;
+// & input:focus {
+//   outline: none;
+//   background: #fad0ec;
+//   border-color: #8b005d;
+// }
+// `;
 
 const CourseInput = props => {
   const [enteredValue, setEnteredValue] = useState('');
@@ -55,11 +55,13 @@ const CourseInput = props => {
     <form onSubmit={formSubmitHandler}>
       {/* Cara 1 : */}
       {/* <FormControl className={!isValid && 'invalid'}> */}
-      {/* Cara 2 :  */}
-      <FormControl invalid={!isValid}>
+      {/* Cara 2 (styled components) :  */}
+      {/* <FormControl invalid={!isValid}> */}
+      <div className={`${styles['form-control']} ${!isValid && styles.invalid}`}>
         <label>Course Goal</label>
         <input type="text" onChange={goalInputChangeHandler} />
-      </FormControl>
+        </div>
+      {/* </FormControl> */}
       <Button type="submit">Add Goal</Button>
     </form>
   );
